@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Test-2D v1</title>
+<script src='canvas.js'></script>
+<script src='lib2D.js'></script>
+<script src='lib3D.js'></script>
+<script src='obj3D.js'></script>
+<script>
+///////////////////////////////////////////////////////////
+{//==================================  Initialisations  ===
+var timer1	= null;	// timer frames
+function	program_init	()	{
+//
+//  Initialiser les objets du programme
+//  Appelé 1 seule fois au début du prog (onload)
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	lib2D_init( 200 , 100 );
+	creerLeMonde();
+	start();	// Timer
+}// -------------------------------------------------------
+}
+{//=================================  Gestion du Timer  ===
+function	start()	{ 
+	if (timer1 == null)
+	timer1 = setInterval('drawFrame()', 1000/30); // timer
+}// -------------------------------------------------------
+function	stop()	{
+	if (timer1 != null)
+	{
+		clearInterval(timer1);
+		timer1=null; // est arrété
+	}
+}// -------------------------------------------------------
+}
+{//=================================  Gestion du Monde  ===
+var obj1;
+function	creerLeMonde		()			{
+//
+//  Créer tous les objets du monde
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//===== Démo 1
+obj1 = Obj3D_Creer();
+	Obj3D_DefPoint(obj1 , 1, 1, 3);
+	Obj3D_DefPoint(obj1 , 1, 4, 2);
+	Obj3D_DefPoint(obj1 , 2, 2, 6);
+	Obj3D_DefPoint(obj1 , 4, 2, 2);
+
+	Obj3D_DefSegment(obj1 , 0, 1);
+	Obj3D_DefSegment(obj1 , 1, 2);
+	Obj3D_DefSegment(obj1 , 2, 3);
+	Obj3D_DefSegment(obj1 , 3, 0);
+	Obj3D_DefSegment(obj1 , 2, 0);
+	Obj3D_DefSegment(obj1 , 3, 1);
+//===== Cube
+cube = Obj3D_Creer();
+	Obj3D_DefPoint(cube , 2, 2, 2);
+	Obj3D_DefPoint(cube , 2, 4, 2);
+	Obj3D_DefPoint(cube , 4, 4, 2);
+	Obj3D_DefPoint(cube , 4, 2, 2);
+
+	Obj3D_DefPoint(cube , 2, 2, 4);
+	Obj3D_DefPoint(cube , 2, 4, 4);
+	Obj3D_DefPoint(cube , 4, 4, 4);
+	Obj3D_DefPoint(cube , 4, 2, 4);
+
+	Obj3D_DefSegment(cube , 0, 1);
+	Obj3D_DefSegment(cube , 1, 2);
+	Obj3D_DefSegment(cube , 2, 3);
+	Obj3D_DefSegment(cube , 3, 0);
+
+	Obj3D_DefSegment(cube , 4, 5);
+	Obj3D_DefSegment(cube , 5, 6);
+	Obj3D_DefSegment(cube , 6, 7);
+	Obj3D_DefSegment(cube , 7, 4);
+
+	Obj3D_DefSegment(cube , 4, 0);
+	Obj3D_DefSegment(cube , 5, 1);
+	Obj3D_DefSegment(cube , 6, 2);
+	Obj3D_DefSegment(cube , 7, 3);
+
+cube1 = Obj3D_Creer();
+	Obj3D_DefPoint(cube1 , 1, 1, 1);
+	Obj3D_DefPoint(cube1 , 1, 2, 1);
+	Obj3D_DefPoint(cube1 , 2, 2, 1);
+	Obj3D_DefPoint(cube1 , 2, 1, 1);
+
+	Obj3D_DefPoint(cube1 , 1, 1, 2);
+	Obj3D_DefPoint(cube1 , 1, 2, 2);
+	Obj3D_DefPoint(cube1 , 2, 2, 2);
+	Obj3D_DefPoint(cube1 , 2, 1, 2);
+
+	Obj3D_DefSegment(cube1 , 0, 1);
+	Obj3D_DefSegment(cube1 , 1, 2);
+	Obj3D_DefSegment(cube1 , 2, 3);
+	Obj3D_DefSegment(cube1 , 3, 0);
+
+	Obj3D_DefSegment(cube1 , 4, 5);
+	Obj3D_DefSegment(cube1 , 5, 6);
+	Obj3D_DefSegment(cube1 , 6, 7);
+	Obj3D_DefSegment(cube1 , 7, 4);
+
+	Obj3D_DefSegment(cube1 , 4, 0);
+	Obj3D_DefSegment(cube1 , 5, 1);
+	Obj3D_DefSegment(cube1 , 6, 2);
+	Obj3D_DefSegment(cube1 , 7, 3);
+
+
+console.log(' Créer le monde fonctionne ');
+}// -------------------------------------------------------
+}
+{//==============================  Gestion de la Frame  ===
+var cptFrames = 0;
+function tracer_cube() {
+
+	lib3D_segment(0,0,0 , 0,1,0 , 'orange');
+	lib3D_segment(-1,-1 , -1,-1,-1 ,'orange');
+
+    lib3D_segment (0,0,0 , 0,1,0 , 'orange');
+    lib3D_segment (1,1,0 , 0,1,0 , 'orange');
+    lib3D_segment (1,1,0 , 1,0,0 , 'orange');
+    lib3D_segment (0,0,0 , 1,0,0 , 'orange');
+
+    lib3D_segment (0,0,1 , 0,1,1 , 'orange');
+    lib3D_segment (1,1,1 , 0,1,1 , 'orange');
+    lib3D_segment (1,1,1 , 1,0,1 , 'orange');
+    lib3D_segment (0,0,1 , 1,0,1 , 'orange');
+
+    lib3D_segment (0,0,0 , 0,0,1 , 'orange');
+    lib3D_segment (0,1,0 , 0,1,1 , 'orange');
+    lib3D_segment (1,1,0 , 1,1,1 , 'orange');
+    lib3D_segment (1,0,0 , 1,0,1 , 'orange');
+
+
+}
+
+function	drawFrame()	{
+//
+// Retracer l'image courante du monde
+// Appelé 50 fois par seconde
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	//cptFrames++;
+	
+	//-- Gérer l'animation
+var angle = cptFrames/130 *2*Math.PI ;
+var dx = 0.1 * Math.cos(angle);	// Délacement de dx,dy
+var dy = 0.1 * Math.sin(angle*2);	// autour d'une ellipsezvar dy= 2 * Math.sin(angle);
+var dz = 0.1 * Math.sin(angle*1.5);
+
+	//-- Afficher les objets
+	lib3D_echelle (30);
+	
+	lib3D_clear ('black');	// Effacer l'écran
+	lib3D_repere(2);			// Tracer le repère 2D
+	
+	lib3D_point ( 10 ,  0 , 0, 'red' );
+	lib3D_point (-10 , 10 , 0, 'lime');
+
+	Translater(cube, -1, -2, 0);
+	Pivoter(cube, 0.005, 'z');
+	Translater(cube, 1, 2, 0);
+	Obj3D_Draw_YZ(cube);
+	Obj3D_Draw_XY(cube);
+	Obj3D_Draw_XZ(cube);	
+	Obj3D_Draw(cube);
+
+	//-----------------
+	Translater(cube1, -1, -2, 0);
+	Pivoter(cube1, 0.005, 'x');
+	Translater(cube1, 1, 2, 0);
+	Obj3D_Draw_YZ(cube1);
+	Obj3D_Draw_XY(cube1);
+	Obj3D_Draw_XZ(cube1);	
+	Obj3D_Draw(cube1);
+	//tracer_cube();
+}// -------------------------------------------------------
+}
+///////////////////////////////////////////////////////////
+</script>
+</head>
+<body onload="program_init()">
+    <h1>Test-2D v1</h1>
+
+    <canvas id="canvas1"
+            width="1080" height="400"
+            style="border:solid 1px #444">
+    </canvas>
+</body>
+</html>
